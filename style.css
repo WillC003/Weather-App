@@ -9,44 +9,46 @@ body {
   margin: 0;
 }
 
-/* Weather container: wider and not as tall */
+/* Weather container: smaller overall dimensions */
 #weather-container {
   background: rgba(255, 255, 255, 0.85);
   width: 90%;
-  max-width: 550px;      /* Increased width */
-  padding: 15px 20px;    /* Reduced vertical padding for a shorter container */
-  border-radius: 10px;
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3);
+  max-width: 500px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
   text-align: center;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.4);
+  max-height: 80vh; /* Ensure it doesn't exceed 80% of viewport height */
+  overflow-y: auto; /* Add scroll if needed */
 }
 
 /* Headings and paragraphs */
 h2, p {
   color: #1B263B;
-  margin: 6px 0;
-  font-size: 1rem;
+  margin: 4px 0;
+  font-size: 0.9rem;
 }
 
-/* Search container styling */
+/* Search container */
 #search-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 8px;
 }
 
 input {
-  width: 65%;
-  padding: 8px;
-  border-radius: 8px;
+  width: 60%;
+  padding: 6px;
+  border-radius: 6px;
   border: 1px solid #1B263B;
   text-align: center;
   background: rgba(255, 255, 255, 0.7);
   color: #1B263B;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 input::placeholder {
@@ -56,11 +58,11 @@ input::placeholder {
 button {
   background: linear-gradient(90deg, #3A6073, #8C52FF);
   color: white;
-  padding: 8px;
+  padding: 6px 8px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   transition: 0.3s;
 }
 
@@ -68,18 +70,18 @@ button:hover {
   background: linear-gradient(90deg, #8C52FF, #3A6073);
 }
 
-/* Temperature display styling */
+/* Temperature display */
 #temp-div p {
-  font-size: 48px;
-  margin-top: 8px;
+  font-size: 36px;
+  margin-top: 6px;
   color: #1B263B;
 }
 
-/* Weather icon styling */
+/* Weather icon */
 #weather-icon {
-  width: 140px;
-  height: 140px;
-  margin: 8px auto;
+  width: 120px;
+  height: 120px;
+  margin: 6px auto;
   display: none;
 }
 
@@ -87,20 +89,20 @@ button:hover {
 #weekly-forecast {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 6px;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
-/* Daily forecast card styling */
+/* Daily forecast card */
 .daily-item {
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  padding: 8px;
-  width: 100px;
+  border-radius: 6px;
+  padding: 6px;
+  width: 90px;
   text-align: center;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
@@ -111,48 +113,47 @@ button:hover {
 
 /* Daily forecast card text styles */
 .daily-item .day {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #fff;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  margin-bottom: 4px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2px;
 }
 
 .daily-item img {
-  width: 45px;
-  height: 45px;
-  margin-bottom: 4px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 2px;
 }
 
 .daily-item .temp {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .daily-item .desc {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: #eee;
 }
 
-/* Loading spinner styling */
+/* Loading spinner */
 .hidden {
   display: none;
 }
 
 #loading-spinner {
-  width: 30px;
-  height: 30px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top: 3px solid white;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 15px auto;
+  margin: 8px auto;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-s
