@@ -1,6 +1,6 @@
 const apiKey = '34a9731fd492e2266c584c8784f0653c';
 
-// When the DOM loads, load the saved city (if any) and get weather data
+// Load saved city on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   const savedCity = localStorage.getItem('lastCity');
   if (savedCity) {
@@ -10,29 +10,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getWeather(cityInput) {
-  // Use the provided cityInput (when reloading) or read from the input field
   let city = cityInput || document.getElementById('city').value;
   if (!city) {
     alert('Please enter a city');
     return;
   }
-
-  // Save the city to localStorage so it persists on refresh
   localStorage.setItem('lastCity', city);
 
-  // URLs for current weather and forecast (in Fahrenheit)
   const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
 
-  // Show the loading spinner
   document.getElementById('loading-spinner').classList.remove('hidden');
 
   // Fetch current weather
   fetch(currentWeatherUrl)
     .then(response => response.json())
-    .then(data => {
-      displayWeather(data);
-    })
+    .then(data => displayWeather(data))
     .catch(error => {
       console.error('Error fetching current weather data:', error);
       alert('Error fetching current weather data. Please try again.');
@@ -41,17 +34,14 @@ function getWeather(cityInput) {
   // Fetch forecast data
   fetch(forecastUrl)
     .then(response => response.json())
-    .then(data => {
-      displayWeeklyForecast(data.list);
-    })
+    .then(data => displayWeeklyForecast(data.list))
     .catch(error => {
       console.error('Error fetching forecast data:', error);
       alert('Error fetching forecast data. Please try again.');
     })
     .finally(() => {
-      // Hide the loading spinner after data has been fetched
       document.getElementById('loading-spinner').classList.add('hidden');
-      // Hide the search bar after a successful lookup
+      // Hide search bar after lookup
       document.getElementById('search-container').style.display = 'none';
     });
 }
@@ -61,7 +51,6 @@ function displayWeather(data) {
   const weatherInfoDiv = document.getElementById('weather-info');
   const weatherIcon = document.getElementById('weather-icon');
 
-  // Clear previous content
   tempDivInfo.innerHTML = '';
   weatherInfoDiv.innerHTML = '';
 
@@ -85,11 +74,11 @@ function displayWeather(data) {
 
 function displayWeeklyForecast(forecastData) {
   const weeklyForecastDiv = document.getElementById('weekly-forecast');
-  weeklyForecastDiv.innerHTML = ''; // Clear previous forecast
+  weeklyForecastDiv.innerHTML = ''; // Clear previous data
 
   let dailyForecasts = {};
 
-  // Group forecast entries (which are every 3 hours) by day (using weekday names)
+  // Group forecast data by day (using weekday names)
   forecastData.forEach(item => {
     const date = new Date(item.dt * 1000);
     const day = date.toLocaleDateString('en-US', { weekday: 'long' });
@@ -106,7 +95,7 @@ function displayWeeklyForecast(forecastData) {
     }
   });
 
-  // Get the first 7 unique days from the forecast
+  // Use the first 7 days
   let days = Object.keys(dailyForecasts).slice(0, 7);
   days.forEach(day => {
     const { minTemp, maxTemp, icon, description } = dailyForecasts[day];
